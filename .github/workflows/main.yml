@@ -31,7 +31,8 @@ jobs:
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        #key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: 
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
           docker stop cicd || true
