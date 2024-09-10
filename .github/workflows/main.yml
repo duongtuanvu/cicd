@@ -1,4 +1,4 @@
-name: Backend Deployment1
+name: Backend Deployment
 
 on:
   push:
