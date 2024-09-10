@@ -30,7 +30,7 @@ jobs:
       #run: ping 172.16.0.174
       
     - name: Pull the image to VM        
-      uses: appleboy/ssh-action@v1.0.0
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
