@@ -38,7 +38,7 @@ jobs:
         #key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: 
           echo "Connected successfully"
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-          docker stop cicd || true
-          docker rm cicd || true
-          docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+          #docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+          #docker stop cicd || true
+          #docker rm cicd || true
+          #docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
