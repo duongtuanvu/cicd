@@ -28,20 +28,20 @@ jobs:
     needs: build
     steps:
     - name: Pull the image to VM
-      run: |
-        docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+      #run: |
+        #docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
         #docker stop cicd || true
         #docker rm cicd || true
-        docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-        docker ps
+        #docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+        #docker ps
         
-      #uses: appleboy/ssh-action@v1.0.0
-      #with:
-        #host: ${{ secrets.SSH_HOST }}
-        #username: ${{ secrets.SSH_USERNAME }}
-        #key: ${{ secrets.SSH_KEY }}
-        #script: 
-          #docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-          #docker stop cicd || true
-          #docker rm cicd || true
-          #docker run -d -p 8888:80 --name hello ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: 
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+          docker stop cicd || true
+          docker rm cicd || true
+          docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
