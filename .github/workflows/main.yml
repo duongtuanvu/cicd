@@ -27,14 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Pull the image to VM
-      #run: |
-        #docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-        #docker stop cicd || true
-        #docker rm cicd || true
-        #docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-        #docker ps
-        
+    - name: Pull the image to VM        
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.SSH_HOST }}
