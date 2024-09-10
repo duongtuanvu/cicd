@@ -34,6 +34,7 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         #key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: 
+          echo "Connected successfully"
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
           docker stop cicd || true
           docker rm cicd || true
