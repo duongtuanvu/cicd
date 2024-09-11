@@ -10,8 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    #- name: Build the Docker image
-    #  run: docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+    - name: Build the Docker image
+      run: docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
 
     #- name: Log into Docker Hub
     #  uses: docker/login-action@v3
@@ -28,7 +28,6 @@ jobs:
     steps: 
     - name: Run the image to VM  
       run: |
-        #docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
         docker stop cicd
         docker rm cicd
         docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
