@@ -16,7 +16,6 @@ jobs:
         docker stop cicd
         docker rm cicd
         docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-      #shell: powershell
 
     #- name: Log into Docker Hub
     #  uses: docker/login-action@v3
@@ -33,7 +32,6 @@ jobs:
     steps: 
     - name: Run the image 
       run: docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-      #shell: powershell
     
       #uses: appleboy/ssh-action@v1.0.3
       #with:
