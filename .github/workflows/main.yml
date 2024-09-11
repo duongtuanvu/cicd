@@ -29,8 +29,8 @@ jobs:
     - name: Pull the image to VM  
       run: |
         docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-        docker stop cicd || true
-        docker rm cicd || true
+        docker stop cicd
+        docker rm cicd
         docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
       shell: powershell
     
