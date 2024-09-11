@@ -23,14 +23,9 @@ jobs:
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
     
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
-    steps:
-    - name: Ping Google's DNS
-      run: |
-        echo "Pinging Google's DNS..."
-        ping -c 4 8.8.8.8
-      
+    steps: 
     - name: Pull the image to VM        
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -41,7 +36,7 @@ jobs:
         #key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: 
           echo "Connected successfully"
-          #docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-          #docker stop cicd || true
-          #docker rm cicd || true
-          #docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+          docker stop cicd || true
+          docker rm cicd || true
+          docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
