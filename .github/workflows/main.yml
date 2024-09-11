@@ -26,8 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Ping
-      run: ping -c 4 google.com
+    - name: Ping Google's DNS
+      run: |
+        echo "Pinging Google's DNS..."
+        ping -c 4 8.8.8.8
       
     - name: Pull the image to VM        
       uses: appleboy/ssh-action@v1.0.3
