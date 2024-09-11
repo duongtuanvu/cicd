@@ -28,11 +28,11 @@ jobs:
     steps: 
     - name: Pull the image to VM  
       run: |
-        echo "Deploy ..."
         docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
         docker stop cicd || true
         docker rm cicd || true
         docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+      shell: pwsh
     
       #uses: appleboy/ssh-action@v1.0.3
       #with:
