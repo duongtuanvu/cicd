@@ -32,7 +32,7 @@ jobs:
         docker stop cicd || true
         docker rm cicd || true
         docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-      shell: pwsh
+      shell: powershell
     
       #uses: appleboy/ssh-action@v1.0.3
       #with:
