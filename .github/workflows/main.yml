@@ -26,17 +26,24 @@ jobs:
     runs-on: self-hosted
     needs: build
     steps: 
-    - name: Pull the image to VM        
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        debug: true
+    - name: Pull the image to VM  
+      run: |
+        echo "Deploy ..."
+        docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+        docker stop cicd || true
+        docker rm cicd || true
+        docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+    
+      #uses: appleboy/ssh-action@v1.0.3
+      #with:
+        #host: ${{ secrets.SSH_HOST }}
+        #username: ${{ secrets.SSH_USERNAME }}
+        #password: ${{ secrets.SSH_PASSWORD }}
+        #debug: true
         #key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: 
-          echo "Connected successfully"
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
-          docker stop cicd || true
-          docker rm cicd || true
-          docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+        #script: 
+          #echo "Connected successfully"
+          #docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
+          #docker stop cicd || true
+          #docker rm cicd || true
+          #docker run -d -p 8888:80 --name cicd ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
