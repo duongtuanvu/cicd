@@ -27,7 +27,7 @@ jobs:
     needs: build
     steps:
     - name: Ping
-      run: ping c 4 google.com
+      run: ping -c 4 google.com
       
     - name: Pull the image to VM        
       uses: appleboy/ssh-action@v1.0.3
